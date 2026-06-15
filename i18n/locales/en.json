@@ -1,0 +1,183 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "shop": "Shop",
+    "blog": "Blog",
+    "realEstate": "Real Estate",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "cart": "Cart",
+    "favorites": "Favorites",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "menu": "Menu",
+    "closeMenu": "Close menu"
+  },
+  "home": {
+    "heroTitle": "Build Anything with One Starter Kit",
+    "heroSubtitle": "A universal Nuxt template for e-commerce, real estate, healthcare, and more. Pick the pages you need and ship faster.",
+    "heroCta": "Explore Shop",
+    "heroSecondary": "Learn More",
+    "featuresTitle": "Why Choose This Starter",
+    "featuresSubtitle": "Production-ready features out of the box",
+    "sliderTitle": "Featured Highlights",
+    "statsTitle": "Trusted by Developers",
+    "ctaTitle": "Ready to Start Your Project?",
+    "ctaSubtitle": "Clone, customize, and deploy in minutes.",
+    "ctaButton": "Get Started"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "We build flexible, performant web experiences",
+    "missionTitle": "Our Mission",
+    "missionText": "To provide developers with a universal Nuxt starter that adapts to any industry — from e-commerce to healthcare.",
+    "visionTitle": "Our Vision",
+    "visionText": "Empowering teams to focus on business logic instead of boilerplate.",
+    "valuesTitle": "Our Values",
+    "teamTitle": "Meet the Team"
+  },
+  "shop": {
+    "title": "Shop",
+    "subtitle": "Browse our curated collection",
+    "addToCart": "Add to Cart",
+    "inCart": "In Cart",
+    "outOfStock": "Out of Stock",
+    "quantity": "Quantity",
+    "remove": "Remove",
+    "addFavorite": "Add to favorites",
+    "removeFavorite": "Remove from favorites",
+    "price": "Price",
+    "category": "Category",
+    "rating": "Rating",
+    "relatedProducts": "Related Products",
+    "notFound": "Product not found"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "emptyCta": "Continue Shopping",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "total": "Total",
+    "checkout": "Proceed to Checkout",
+    "removeItem": "Remove item",
+    "decreaseQty": "Decrease quantity",
+    "increaseQty": "Increase quantity"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "shippingInfo": "Shipping Information",
+    "paymentInfo": "Payment Information",
+    "orderSummary": "Order Summary",
+    "fullName": "Full Name",
+    "email": "Email",
+    "address": "Address",
+    "city": "City",
+    "zipCode": "Zip Code",
+    "cardNumber": "Card Number",
+    "expiry": "Expiry Date",
+    "cvv": "CVV",
+    "placeOrder": "Place Order",
+    "success": "Order placed successfully!"
+  },
+  "favorites": {
+    "title": "Favorites",
+    "empty": "No favorites yet",
+    "emptyCta": "Browse Products"
+  },
+  "auth": {
+    "loginTitle": "Sign In",
+    "registerTitle": "Create Account",
+    "forgotTitle": "Forgot Password",
+    "otpTitle": "Verify OTP",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "name": "Full Name",
+    "loginButton": "Sign In",
+    "registerButton": "Create Account",
+    "forgotButton": "Send Reset Link",
+    "otpButton": "Verify",
+    "otpCode": "Enter OTP Code",
+    "resendOtp": "Resend OTP",
+    "forgotLink": "Forgot password?",
+    "loginLink": "Already have an account?",
+    "registerLink": "Don't have an account?",
+    "backToLogin": "Back to login",
+    "demoHint": "Demo: use any email and password (min 6 chars)"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Latest articles and insights",
+    "readMore": "Read More",
+    "readTime": "{minutes} min read",
+    "by": "By",
+    "notFound": "Article not found",
+    "backToBlog": "Back to Blog"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Have a question? We'd love to hear from you.",
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "Send Message",
+    "success": "Message sent successfully!",
+    "info": "Contact Information",
+    "address": "123 Business Ave, Tech City, 54321",
+    "workingHours": "Mon-Fri: 9am - 6pm"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find quick answers to common queries",
+    "general": "General",
+    "account": "Account",
+    "payment": "Payment",
+    "questions": [
+      {
+        "q": "What is this starter kit?",
+        "a": "It's a universal Nuxt 3 template designed to kickstart any web project with pre-built modules for e-commerce, real estate, and more."
+      },
+      {
+        "q": "Is it SEO friendly?",
+        "a": "Yes, it uses Nuxt's built-in SEO features, semantic HTML, and automatic meta tag generation."
+      },
+      {
+        "q": "Does it support RTL?",
+        "a": "Absolutely! It has full Arabic support with RTL layout switching."
+      }
+    ]
+  },
+  "realEstate": {
+    "title": "Real Estate",
+    "subtitle": "Find your dream property",
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms",
+    "area": "Area",
+    "location": "Location",
+    "type": "Type",
+    "features": "Features",
+    "viewDetails": "View Details",
+    "contactAgent": "Contact Agent",
+    "notFound": "Property not found",
+    "sqft": "sq ft"
+  },
+  "footer": {
+    "description": "Universal Nuxt starter for any industry project.",
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "email": "hello{'@'}example.com",
+    "phone": "+1 (555) 123-4567",
+    "rights": "All rights reserved."
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "back": "Back",
+    "search": "Search",
+    "language": "Language"
+  }
+}

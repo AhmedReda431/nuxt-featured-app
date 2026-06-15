@@ -1,30 +1,42 @@
-﻿import { defineStore } from "pinia"
-import type { Product, Building } from "~/types"
+import { defineStore } from 'pinia'
+import { getProductById } from '~/data/products'
 
-export const useFavoritesStore = defineStore("favorites", {
+export const useFavoritesStore = defineStore('favorites', {
   state: () => ({
-    products: [] as Product[],
-    buildings: [] as Building[],
+    ids: [] as string[],
   }),
+
   getters: {
-    totalFavorites: (state) => state.products.length + state.buildings.length,
+    count: state => state.ids.length,
+
+    isFavorite: state => (productId: string) => state.ids.includes(productId),
+
+    favoriteProducts: (state) => {
+      return state.ids
+        .map(id => getProductById(id))
+        .filter(Boolean)
+    },
   },
+
   actions: {
-    toggleProduct(product: Product) {
-      const exists = this.products.find((item) => item.id === product.id)
-      if (exists) {
-        this.products = this.products.filter((item) => item.id !== product.id)
-      } else {
-        this.products.push(product)
+    toggle(productId: string) {
+      const index = this.ids.indexOf(productId)
+      if (index === -1) {
+        this.ids.push(productId)
+      }
+      else {
+        this.ids.splice(index, 1)
       }
     },
-    toggleBuilding(building: Building) {
-      const exists = this.buildings.find((item) => item.id === building.id)
-      if (exists) {
-        this.buildings = this.buildings.filter((item) => item.id !== building.id)
-      } else {
-        this.buildings.push(building)
-      }
+
+    remove(productId: string) {
+      this.ids = this.ids.filter(id => id !== productId)
+    },
+
+    clear() {
+      this.ids = []
     },
   },
+
+  persist: true,
 })

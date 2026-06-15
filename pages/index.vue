@@ -1,30 +1,151 @@
-﻿<template>
-  <section class="section-padding">
-    <div class="container-custom">
-      <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
-        <div>
-          <p class="text-sm uppercase tracking-[0.3em] text-primary-600">Build faster with Nuxt</p>
-          <h1 class="mt-6 text-5xl font-bold text-slate-900">{{ t("home.hero.title") }}</h1>
-          <p class="mt-6 text-lg text-slate-600">{{ t("home.hero.subtitle") }}</p>
-          <div class="mt-10 flex flex-col gap-4 sm:flex-row">
-            <NuxtLink :to="localePath('/shop')" class="btn-primary">{{ t('home.hero.shop') }}</NuxtLink>
-            <NuxtLink :to="localePath('/real-estate')" class="btn-outline">{{ t('home.hero.realEstate') }}</NuxtLink>
+<script setup lang="ts">
+const { t } = useI18n()
+const localePath = useLocalePath()
+
+useAppSeo({
+  title: t('nav.home'),
+  description: t('home.heroSubtitle'),
+})
+
+const LazyFeatureSlider = defineAsyncComponent(() => import('~/components/home/FeatureSlider.vue'))
+
+const features = [
+  { icon: '🛒', title: 'E-Commerce', desc: 'Cart, checkout, favorites with persistence' },
+  { icon: '🏠', title: 'Real Estate', desc: 'Property listings with detail pages' },
+  { icon: '📝', title: 'Blog CMS Ready', desc: 'Blog listing and single post pages' },
+  { icon: '🔐', title: 'Auth Flow', desc: 'Login, register, OTP, password reset' },
+  { icon: '🌍', title: 'i18n', desc: 'English & Arabic with RTL support' },
+  { icon: '⚡', title: 'Performance', desc: 'Lazy loading, code splitting, SEO' },
+]
+
+const stats = [
+  { value: '10+', label: 'Pages' },
+  { value: '3', label: 'Pinia Stores' },
+  { value: '2', label: 'Languages' },
+  { value: '100%', label: 'Responsive' },
+]
+</script>
+
+<template>
+  <div>
+    <HomeHeroSection />
+
+    <HomeAnimatedSection animation="fade-in">
+      <section class="section">
+        <div class="container">
+          <UiSectionTitle
+            :title="t('home.featuresTitle')"
+            :subtitle="t('home.featuresSubtitle')"
+            centered
+          />
+          <div class="grid grid--3">
+            <div v-for="feature in features" :key="feature.title" class="feature-card card">
+              <span class="feature-card__icon" aria-hidden="true">{{ feature.icon }}</span>
+              <h3 class="feature-card__title">{{ feature.title }}</h3>
+              <p class="feature-card__desc">{{ feature.desc }}</p>
+            </div>
           </div>
         </div>
-        <div class="rounded-[2rem] bg-white p-10 shadow-soft">
-          <SectionTitle title="Featured Launch" subtitle="A minimal, multilingual Nuxt storefront." />
-          <div class="mt-8 grid gap-4">
-            <div class="rounded-3xl border border-slate-200 p-6">Modern layouts and page structure.</div>
-            <div class="rounded-3xl border border-slate-200 p-6">Simple auth, cart, and favorites support.</div>
-            <div class="rounded-3xl border border-slate-200 p-6">Automatic locale routing with @nuxtjs/i18n.</div>
+      </section>
+    </HomeAnimatedSection>
+
+    <LazyFeatureSlider />
+
+    <HomeAnimatedSection animation="slide-in-left">
+      <section class="section section--alt">
+        <div class="container">
+          <UiSectionTitle :title="t('home.statsTitle')" centered />
+          <div class="stats">
+            <div v-for="stat in stats" :key="stat.label" class="stats__item">
+              <span class="stats__value">{{ stat.value }}</span>
+              <span class="stats__label">{{ stat.label }}</span>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
+    </HomeAnimatedSection>
+
+    <HomeAnimatedSection animation="fade-in">
+      <section class="section cta">
+        <div class="container cta__inner">
+          <h2 class="cta__title">{{ t('home.ctaTitle') }}</h2>
+          <p class="cta__subtitle">{{ t('home.ctaSubtitle') }}</p>
+          <NuxtLink :to="localePath('/shop')" class="btn btn--primary btn--lg">
+            {{ t('home.ctaButton') }}
+          </NuxtLink>
+        </div>
+      </section>
+    </HomeAnimatedSection>
+  </div>
 </template>
 
-<script setup>
-const { t } = useI18n()
-useSeo({ title: t("home.hero.title"), description: t("home.hero.subtitle"), type: "website" })
-</script>
+<style scoped>
+.feature-card {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.feature-card__icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.feature-card__title {
+  margin: 0 0 0.5rem;
+  font-size: 1.0625rem;
+}
+
+.feature-card__desc {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.9375rem;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.stats__value {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.stats__label {
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+}
+
+.cta {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: #fff;
+}
+
+.cta__inner {
+  text-align: center;
+}
+
+.cta__title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin: 0 0 0.75rem;
+}
+
+.cta__subtitle {
+  margin: 0 0 1.5rem;
+  opacity: 0.9;
+}
+
+.cta .btn--primary {
+  background: #fff;
+  color: var(--color-primary);
+}
+
+.cta .btn--primary:hover {
+  background: #f1f5f9;
+}
+</style>

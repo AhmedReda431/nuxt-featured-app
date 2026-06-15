@@ -1,15 +1,26 @@
-﻿<template>
-  <div class="min-h-screen bg-slate-50 text-slate-900">
-    <AppNavbar />
-    <main>
+<script setup lang="ts">
+const LazyAppFooter = defineAsyncComponent(() => import('~/components/layout/AppFooter.vue'))
+</script>
+
+<template>
+  <div class="layout">
+    <LayoutAppNavbar />
+    <main id="main-content" class="layout__main" tabindex="-1">
       <slot />
     </main>
-    <AppFooter />
-    <CartDrawer />
-    <BackToTop />
+    <LazyAppFooter />
   </div>
 </template>
 
-<script setup>
-// Default layout uses shared page chrome.
-</script>
+<style scoped>
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.layout__main {
+  flex: 1;
+  padding-top: var(--header-height);
+}
+</style>

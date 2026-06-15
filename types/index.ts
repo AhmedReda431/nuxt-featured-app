@@ -1,41 +1,62 @@
-﻿export interface Product {
-  id: number
+export interface Product {
+  id: string
   slug: string
   name: string
-  price: number
-  originalPrice?: number
-  images: string[]
   description: string
+  price: number
+  currency: string
   category: string
-}
-
-export interface Building {
-  id: number
-  slug: string
-  title: string
-  price: number
+  image: string
   images: string[]
-  bedrooms: number
-  bathrooms: number
-  area: number
-  description: string
-}
-
-export interface BlogPost {
-  id: number
-  slug: string
-  title: string
-  coverImage: string
-  excerpt: string
-  publishedAt: string
-  content: string
-  author: {
-    name: string
-    avatar: string
-  }
+  rating: number
+  inStock: boolean
 }
 
 export interface CartItem {
-  product: Product
+  productId: string
   quantity: number
+}
+
+export interface BlogPost {
+  id: string
+  slug: string
+  title: string
+  excerpt: string
+  content: string
+  author: string
+  date: string
+  image: string
+  category: string
+  readTime: number
+}
+
+export interface Building {
+  id: string
+  slug: string
+  title: string
+  description: string
+  price: number
+  currency: string
+  location: string
+  bedrooms: number
+  bathrooms: number
+  area: number
+  type: string
+  image: string
+  images: string[]
+  features: string[]
+}
+
+export interface User {
+  id: string
+  name: string
+  email: string
+}
+
+export interface SeoMeta {
+  title?: string
+  description?: string
+  image?: string
+  type?: string
+  noindex?: boolean
 }

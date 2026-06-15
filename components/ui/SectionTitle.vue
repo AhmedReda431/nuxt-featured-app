@@ -1,10 +1,28 @@
-﻿<template>
-  <div class="text-center mb-12">
-    <p class="text-sm uppercase tracking-[0.2em] text-primary-600">{{ title }}</p>
-    <h2 class="mt-3 text-3xl font-bold text-slate-900">{{ subtitle }}</h2>
-  </div>
+<script setup lang="ts">
+interface Props {
+  title: string
+  subtitle?: string
+  centered?: boolean
+}
+
+withDefaults(defineProps<Props>(), {
+  centered: false,
+})
+</script>
+
+<template>
+  <header class="section-header" :class="{ 'section-header--centered': centered }">
+    <h2 class="section__title">{{ title }}</h2>
+    <p v-if="subtitle" class="section__subtitle">{{ subtitle }}</p>
+  </header>
 </template>
 
-<script setup>
-const props = defineProps({ title: String, subtitle: String })
-</script>
+<style scoped>
+.section-header--centered {
+  text-align: center;
+}
+
+.section-header--centered .section__subtitle {
+  margin-inline: auto;
+}
+</style>
