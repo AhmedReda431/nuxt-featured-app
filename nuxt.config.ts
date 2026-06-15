@@ -4,9 +4,12 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     "@nuxtjs/tailwindcss",
-    "@nuxtjs/i18n",
     "@pinia/nuxt",
     "@vueuse/nuxt",
-    "@nuxt/icon", // Add this line
+    "@nuxt/icon",
   ],
+  tailwindcss: {
+    viewer: false,
+  },
 });
+

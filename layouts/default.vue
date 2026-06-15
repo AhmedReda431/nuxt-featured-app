@@ -1,13 +1,15 @@
-<template>
-  main layout
+﻿<template>
+  <div class="min-h-screen bg-slate-50 text-slate-900">
+    <AppNavbar />
+    <main>
+      <slot />
+    </main>
+    <AppFooter />
+    <CartDrawer />
+    <BackToTop />
+  </div>
 </template>
 
-<script>
-export default {
-
-}
+<script setup>
+// Default layout uses shared page chrome.
 </script>
-
-<style>
-
-</style>

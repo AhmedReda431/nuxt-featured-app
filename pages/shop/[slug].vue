@@ -1,38 +1,22 @@
-<template>
+﻿<template>
   <div class="section-padding">
-    <div class="container-custom">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <!-- Product Image Slider -->
-        <div>
-          <Swiper :modules="[SwiperThumbs]" :thumbs="{ swiper: thumbsSwiper }">
-            <SwiperSlide v-for="img in product.images" :key="img">
-              <img :src="img" :alt="product.name" class="rounded-2xl" />
-            </SwiperSlide>
-          </Swiper>
+    <div class="container-custom max-w-6xl">
+      <div class="grid gap-10 lg:grid-cols-2">
+        <div class="space-y-4">
+          <img :src="product?.images[0]" :alt="product?.name" class="w-full rounded-3xl object-cover" />
         </div>
-
-        <!-- Product Info -->
         <div>
-          <h1 class="text-3xl font-bold mb-4">{{ product.name }}</h1>
-          <div class="flex items-center gap-2 mb-4">
-            <span class="text-2xl font-bold text-primary-600">${{ product.price }}</span>
-            <span v-if="product.originalPrice" class="text-lg text-gray-400 line-through">${{ product.originalPrice }}</span>
+          <h1 class="text-3xl font-bold mb-4">{{ product?.name }}</h1>
+          <p class="text-xl font-semibold text-primary-600 mb-4">${{ product?.price }}</p>
+          <p class="text-slate-600 mb-6">{{ product?.description }}</p>
+          <div class="flex items-center gap-3 mb-6">
+            <button @click="qty = Math.max(1, qty - 1)" class="btn-outline">-</button>
+            <span class="text-lg font-semibold">{{ qty }}</span>
+            <button @click="qty++" class="btn-outline">+</button>
           </div>
-          <p class="text-gray-600 mb-6">{{ product.description }}</p>
-
-          <!-- Actions -->
-          <div class="flex items-center gap-4 mb-6">
-            <div class="flex items-center border rounded-lg">
-              <button @click="qty > 1 && qty--" class="px-4 py-2">-</button>
-              <span class="px-4 py-2">{{ qty }}</span>
-              <button @click="qty++" class="px-4 py-2">+</button>
-            </div>
-            <button @click="addToCart" class="btn-primary flex-1">
-              {{ isInCart ? 'Update Cart' : 'Add to Cart' }}
-            </button>
-            <button @click="toggleFavorite" class="p-3 border rounded-lg" :class="isFavorite ? 'text-red-500' : 'text-gray-400'">
-              <Icon :name="isFavorite ? 'heroicons:heart-solid' : 'heroicons:heart'" />
-            </button>
+          <div class="flex flex-wrap gap-3">
+            <AppButton @click="addToCart" class="w-full sm:w-auto">Add to cart</AppButton>
+            <AppButton variant="outline" @click="toggleFavorite" class="w-full sm:w-auto">Toggle favorite</AppButton>
           </div>
         </div>
       </div>
@@ -42,6 +26,24 @@
 
 <script setup>
 const route = useRoute()
-const slug = route.params.slug
-// Fetch product by slug, implement cart/favorite logic
+const cartStore = useCartStore()
+const favoritesStore = useFavoritesStore()
+const products = [
+  { id: 1, slug: 'modern-headphones', name: 'Modern Headphones', price: 199, images: ['https://images.unsplash.com/photo-1518447178272-5e58cf9e9df2?auto=format&fit=crop&w=900&q=80'], description: 'Premium sound with sleek design.', category: 'Audio' },
+  { id: 2, slug: 'wireless-speaker', name: 'Wireless Speaker', price: 149, images: ['https://images.unsplash.com/photo-1518552789145-145d7d91d81e?auto=format&fit=crop&w=900&q=80'], description: 'Portable speaker with powerful bass.', category: 'Audio' },
+  { id: 3, slug: 'smart-watch', name: 'Smart Watch', price: 249, images: ['https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?auto=format&fit=crop&w=900&q=80'], description: 'Track fitness, calls, and notifications.', category: 'Wearables' },
+]
+const product = computed(() => products.find((item) => item.slug === route.params.slug))
+const qty = ref(1)
+if (!product.value) {
+  navigateTo('/shop')
+}
+const addToCart = () => {
+  if (!product.value) return
+  cartStore.addToCart(product.value, qty.value)
+}
+const toggleFavorite = () => {
+  if (!product.value) return
+  favoritesStore.toggleProduct(product.value)
+}
 </script>
