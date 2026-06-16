@@ -95,3 +95,4 @@ Balanced under the **MIT License**.
 ---
 
 *Made with ❤️ for the Nuxt Community.*
+*Made By Ahmed Reda ,  still working on this project , live demo :https://nuxt-featured-app.vercel.app/*
