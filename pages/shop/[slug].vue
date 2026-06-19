@@ -135,10 +135,10 @@ function decrementCart() {
 
           <p class="product-detail__description">{{ product.description }}</p>
 
-          <div v-if="variants.length" class="product-detail__section">
+          <!-- <div v-if="variants.length" class="product-detail__section">
             <span class="form-label">{{ t('shop.selectColor') }}: <strong>{{ selectedVariant }}</strong></span>
             <ShopVariantSelector v-model="selectedVariant" :variants="variants" />
-          </div>
+          </div> -->
 
           <div class="product-detail__section product-detail__purchase">
             <template v-if="!inCart">
