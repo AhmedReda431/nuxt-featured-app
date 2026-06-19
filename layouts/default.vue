@@ -5,7 +5,6 @@ const { t } = useI18n()
 
 <template>
   <div class="layout">
-    <a href="#main-content" class="skip-link">{{ t('common.skipToContent') }}</a>
     <LayoutAppNavbar />
     <main id="main-content" class="layout__main" tabindex="-1">
       <slot />
