@@ -1,13 +1,12 @@
-<script setup lang="ts">
-interface Props {
-  animation?: 'fade-in' | 'slide-in-left' | 'slide-in-right'
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  animation: 'fade-in',
+<script setup>
+const props = defineProps({
+  animation: {
+    type: String,
+    default: 'fade-in', // 'fade-in' | 'slide-in-left' | 'slide-in-right' | 'zoom-in'
+  },
 })
 
-const sectionRef = ref<HTMLElement | null>(null)
+const sectionRef = ref(null)
 const { observeElement } = useScrollAnimation()
 
 onMounted(() => {

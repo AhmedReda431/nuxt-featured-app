@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const { t } = useI18n()
 const localePath = useLocalePath()
 </script>
@@ -25,7 +25,7 @@ const localePath = useLocalePath()
   </section>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .hero {
   position: relative;
   min-height: calc(100vh - var(--header-height));

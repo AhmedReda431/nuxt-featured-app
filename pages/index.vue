@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const { t } = useI18n()
 const localePath = useLocalePath()
 
@@ -10,17 +10,17 @@ useAppSeo({
 const LazyFeatureSlider = defineAsyncComponent(() => import('~/components/home/FeatureSlider.vue'))
 
 const features = [
-  { icon: '🛒', title: 'E-Commerce', desc: 'Cart, checkout, favorites with persistence' },
-  { icon: '🏠', title: 'Real Estate', desc: 'Property listings with detail pages' },
-  { icon: '📝', title: 'Blog CMS Ready', desc: 'Blog listing and single post pages' },
-  { icon: '🔐', title: 'Auth Flow', desc: 'Login, register, OTP, password reset' },
-  { icon: '🌍', title: 'i18n', desc: 'English & Arabic with RTL support' },
-  { icon: '⚡', title: 'Performance', desc: 'Lazy loading, code splitting, SEO' },
+  { icon: '🛒', title: 'E-Commerce', desc: 'Cart, checkout, favorites, variants — all persisted' },
+  { icon: '🏠', title: 'Real Estate', desc: 'Filterable property listings with detail pages' },
+  { icon: '📝', title: 'Blog', desc: 'Real article data with comments and search' },
+  { icon: '🔐', title: 'Secure Auth', desc: 'Encrypted session cookie, idle auto-logout' },
+  { icon: '🌍', title: 'i18n', desc: 'English & Arabic with full RTL support' },
+  { icon: '⚡', title: 'Performance', desc: 'Lazy loading, code splitting, real SEO' },
 ]
 
 const stats = [
-  { value: '10+', label: 'Pages' },
-  { value: '3', label: 'Pinia Stores' },
+  { value: '13+', label: 'Pages' },
+  { value: '4', label: 'Pinia Stores' },
   { value: '2', label: 'Languages' },
   { value: '100%', label: 'Responsive' },
 ]
@@ -79,7 +79,7 @@ const stats = [
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .feature-card {
   padding: 1.5rem;
   text-align: center;

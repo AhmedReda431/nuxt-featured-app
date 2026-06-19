@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const { t } = useI18n()
 
 useAppSeo({
@@ -148,7 +148,7 @@ async function handleSubmit() {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .contact__grid {
   display: grid;
   gap: 2rem;

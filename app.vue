@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const { locale, locales } = useI18n()
 const localeDir = computed(() => {
   const current = locales.value.find(l => l.code === locale.value)

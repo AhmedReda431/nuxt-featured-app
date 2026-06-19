@@ -1,0 +1,79 @@
+@use 'mixins' as m;
+
+// Shared base for every scroll-reveal animation variant: hidden + offset
+// until the .is-visible class is added by useScrollAnimation().
+@mixin reveal-base {
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fade-in {
+  @include reveal-base;
+  transform: translateY(24px);
+}
+
+.slide-in-left {
+  @include reveal-base;
+  transform: translateX(-40px);
+}
+
+.slide-in-right {
+  @include reveal-base;
+  transform: translateX(40px);
+}
+
+.zoom-in {
+  @include reveal-base;
+  transform: scale(0.92);
+}
+
+[dir='rtl'] {
+  .slide-in-left {
+    transform: translateX(40px);
+  }
+
+  .slide-in-right {
+    transform: translateX(-40px);
+  }
+
+  .slide-in-left.is-visible,
+  .slide-in-right.is-visible {
+    transform: translateX(0);
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--color-bg-alt) 25%, var(--color-border) 37%, var(--color-bg-alt) 63%);
+  background-size: 400% 100%;
+  animation: skeleton-loading 1.4s ease infinite;
+  border-radius: var(--radius-md);
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+
+.spinner {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid rgb(255 255 255 / 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+
+  &--dark {
+    border-color: rgb(15 23 42 / 0.15);
+    border-top-color: var(--color-primary);
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

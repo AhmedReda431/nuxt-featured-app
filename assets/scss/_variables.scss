@@ -1,0 +1,16 @@
+// Compile-time SCSS variables. These mirror the CSS custom properties in
+// _tokens.scss but exist so SCSS-only features (mixins, color functions,
+// math) can use them. Runtime-switchable values (RTL flips, potential
+// dark mode) stay as CSS custom properties instead - SCSS variables are
+// fixed at build time and can't react to attributes like [dir="rtl"].
+
+$breakpoint-sm: 480px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 900px;
+$breakpoint-xl: 1024px;
+
+$header-height: 4rem;
+$container-max: 1280px;
+
+$transition-fast: 150ms ease;
+$transition-base: 200ms ease;

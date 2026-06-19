@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const { t, tm, rt } = useI18n()
 
 useAppSeo({
@@ -6,10 +6,10 @@ useAppSeo({
   description: t('faq.subtitle'),
 })
 
-const questions = tm('faq.questions') as any[]
-const openIndex = ref<number | null>(0)
+const questions = tm("faq.questions")
+const openIndex = ref(0)
 
-function toggle(index: number) {
+function toggle(index) {
   openIndex.value = openIndex.value === index ? null : index
 }
 </script>
@@ -60,7 +60,7 @@ function toggle(index: number) {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .faq__list {
   display: flex;
   flex-direction: column;

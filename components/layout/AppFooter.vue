@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const { t } = useI18n()
 const localePath = useLocalePath()
 </script>
@@ -39,7 +39,7 @@ const localePath = useLocalePath()
   </footer>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .footer {
   background: var(--color-secondary);
   color: #cbd5e1;

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const { t } = useI18n()
 
 useAppSeo({
@@ -10,13 +10,13 @@ const values = [
   { title: 'Quality', desc: 'Clean, maintainable code following best practices.' },
   { title: 'Flexibility', desc: 'Modular pages you can enable or disable per project.' },
   { title: 'Performance', desc: 'Optimized for Core Web Vitals and accessibility.' },
-  { title: 'Developer Experience', desc: 'TypeScript, Pinia, i18n — all configured.' },
+  { title: 'Developer Experience', desc: 'Plain JavaScript, Pinia, i18n — all configured.' },
 ]
 
 const team = [
-  { name: 'Alex Rivera', role: 'Lead Developer', image: 'https://picsum.photos/seed/team1/200/200' },
-  { name: 'Jordan Lee', role: 'UI/UX Designer', image: 'https://picsum.photos/seed/team2/200/200' },
-  { name: 'Sam Taylor', role: 'Product Manager', image: 'https://picsum.photos/seed/team3/200/200' },
+  { name: 'Alex Rivera', role: 'Lead Developer', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80' },
+  { name: 'Jordan Lee', role: 'UI/UX Designer', image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80' },
+  { name: 'Sam Taylor', role: 'Product Manager', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80' },
 ]
 </script>
 
@@ -38,7 +38,12 @@ const team = [
             <p>{{ t('about.missionText') }}</p>
           </div>
           <div class="about-grid__image">
-            <UiLazyImage src="https://picsum.photos/seed/about1/600/400" alt="Our team at work" :width="600" :height="400" />
+            <UiLazyImage
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80"
+              alt="Our team collaborating at work"
+              :width="600"
+              :height="400"
+            />
           </div>
         </div>
       </section>
@@ -52,7 +57,12 @@ const team = [
             <p>{{ t('about.visionText') }}</p>
           </div>
           <div class="about-grid__image">
-            <UiLazyImage src="https://picsum.photos/seed/about2/600/400" alt="Our vision" :width="600" :height="400" />
+            <UiLazyImage
+              src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80"
+              alt="Our vision for the future"
+              :width="600"
+              :height="400"
+            />
           </div>
         </div>
       </section>
@@ -89,7 +99,7 @@ const team = [
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .about-grid {
   display: grid;
   gap: 2rem;

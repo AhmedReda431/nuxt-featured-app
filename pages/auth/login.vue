@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 definePageMeta({
   layout: 'auth',
   middleware: ['guest'],
@@ -6,15 +6,13 @@ definePageMeta({
 
 const { t } = useI18n()
 const localePath = useLocalePath()
+const route = useRoute()
 const authStore = useAuthStore()
 
-useAppSeo({
-  title: t('auth.loginTitle'),
-  noindex: true,
-})
+useAppSeo({ title: t('auth.loginTitle') })
 
-const email = ref('')
-const password = ref('')
+const username = ref('emilys')
+const password = ref('emilyspass')
 const error = ref('')
 const isLoading = ref(false)
 
@@ -22,11 +20,12 @@ async function handleLogin() {
   error.value = ''
   isLoading.value = true
   try {
-    authStore.login(email.value, password.value)
-    await navigateTo(localePath('/'))
+    await authStore.login(username.value, password.value)
+    const redirect = route.query.redirect
+    await navigateTo(typeof redirect === 'string' ? redirect : localePath('/'))
   }
-  catch (e) {
-    error.value = (e as Error).message
+  catch {
+    error.value = t('auth.invalidCredentials')
   }
   finally {
     isLoading.value = false
@@ -41,18 +40,19 @@ async function handleLogin() {
 
     <form @submit.prevent="handleLogin">
       <div class="form-group">
-        <label class="form-label" for="email">{{ t('auth.email') }}</label>
-        <input id="email" v-model="email" type="email" class="form-input" required autocomplete="email" />
+        <label class="form-label" for="username">{{ t('auth.username') }}</label>
+        <input id="username" v-model="username" type="text" class="form-input" required autocomplete="username">
       </div>
       <div class="form-group">
         <label class="form-label" for="password">{{ t('auth.password') }}</label>
-        <input id="password" v-model="password" type="password" class="form-input" required autocomplete="current-password" minlength="6" />
+        <input id="password" v-model="password" type="password" class="form-input" required autocomplete="current-password" minlength="6">
       </div>
 
       <p v-if="error" class="auth-card__error" role="alert">{{ error }}</p>
 
-      <button type="submit" class="btn btn--primary" style="width:100%" :disabled="isLoading">
-        {{ isLoading ? t('common.loading') : t('auth.loginButton') }}
+      <button type="submit" class="btn btn--primary btn--block" :disabled="isLoading">
+        <span v-if="isLoading" class="spinner" aria-hidden="true" />
+        {{ isLoading ? t('auth.loggingIn') : t('auth.loginButton') }}
       </button>
     </form>
 
@@ -66,7 +66,7 @@ async function handleLogin() {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .auth-card {
   padding: 2rem;
 }

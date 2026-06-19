@@ -1,16 +1,16 @@
-<script setup lang="ts">
+<script setup>
 const { t } = useI18n()
 
 const slides = [
-  { id: 1, image: 'https://picsum.photos/seed/slide1/900/500', title: 'E-Commerce Ready' },
-  { id: 2, image: 'https://picsum.photos/seed/slide2/900/500', title: 'Real Estate Module' },
-  { id: 3, image: 'https://picsum.photos/seed/slide3/900/500', title: 'Healthcare Compatible' },
-  { id: 4, image: 'https://picsum.photos/seed/slide4/900/500', title: 'Blog & Content' },
+  { id: 1, image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80', title: 'E-Commerce Ready' },
+  { id: 2, image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80', title: 'Real Estate Module' },
+  { id: 3, image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=80', title: 'Healthcare Compatible' },
+  { id: 4, image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1200&q=80', title: 'Blog & Content' },
 ]
 
 const currentIndex = ref(0)
-const sliderTrack = ref<HTMLElement | null>(null)
-let intervalId: ReturnType<typeof setInterval> | null = null
+const sliderTrack = ref(null)
+let intervalId = null
 
 function next() {
   currentIndex.value = (currentIndex.value + 1) % slides.length
@@ -20,20 +20,32 @@ function prev() {
   currentIndex.value = (currentIndex.value - 1 + slides.length) % slides.length
 }
 
-function goTo(index: number) {
+function goTo(index) {
   currentIndex.value = index
 }
 
-// Touch support
-const { direction, isSwiping } = useSwipe(sliderTrack, {
-  onSwipeEnd: (e, dir) => {
+useSwipe(sliderTrack, {
+  onSwipeEnd: (_event, dir) => {
     if (dir === 'left') next()
     else if (dir === 'right') prev()
   },
 })
 
 onMounted(() => {
-  intervalId = setInterval(next, 5000)
+  // Defer starting the auto-rotation until the browser has spare time,
+  // so this timer setup doesn't add to the work competing with page
+  // hydration right after load. Falls back to a short timeout on
+  // browsers without requestIdleCallback (e.g. Safari).
+  const start = () => {
+    intervalId = setInterval(next, 5000)
+  }
+
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(start, { timeout: 2000 })
+  }
+  else {
+    setTimeout(start, 1000)
+  }
 })
 
 onUnmounted(() => {
@@ -88,7 +100,7 @@ onUnmounted(() => {
   </section>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .slider__wrapper {
   position: relative;
   border-radius: var(--radius-lg);

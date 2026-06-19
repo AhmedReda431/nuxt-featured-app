@@ -1,16 +1,10 @@
-<script setup lang="ts">
-interface Props {
-  src: string
-  alt: string
-  width?: number
-  height?: number
-  loading?: 'lazy' | 'eager'
-}
-
-withDefaults(defineProps<Props>(), {
-  loading: 'lazy',
-  width: 600,
-  height: 400,
+<script setup>
+defineProps({
+  src: { type: String, required: true },
+  alt: { type: String, required: true },
+  width: { type: [Number, String], default: 600 },
+  height: { type: [Number, String], default: 400 },
+  loading: { type: String, default: 'lazy' }, // 'lazy' | 'eager'
 })
 </script>
 
@@ -26,7 +20,7 @@ withDefaults(defineProps<Props>(), {
   />
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .lazy-image {
   width: 100%;
   height: 100%;

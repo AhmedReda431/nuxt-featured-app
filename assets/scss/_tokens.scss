@@ -1,0 +1,60 @@
+// Design tokens stay as CSS custom properties rather than SCSS variables
+// because they need to be readable/overridable at runtime - e.g. a
+// future dark-mode toggle, or per-locale overrides - which plain SCSS
+// variables (resolved once, at compile time) can't do.
+
+:root {
+  --color-primary: #2563eb;
+  --color-primary-rgb: 37, 99, 235;
+  --color-primary-dark: #1d4ed8;
+  --color-primary-light: #dbeafe;
+  --color-secondary: #0f172a;
+  --color-accent: #f59e0b;
+  --color-success: #10b981;
+  --color-danger: #ef4444;
+  --color-bg: #ffffff;
+  --color-bg-alt: #f8fafc;
+  --color-surface: #ffffff;
+  --color-text: #0f172a;
+  --color-text-muted: #64748b;
+  --color-border: #e2e8f0;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-full: 999px;
+
+  --shadow-sm: 0 1px 2px rgb(15 23 42 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(15 23 42 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(15 23 42 / 0.1);
+
+  --container-max: 1280px;
+  --header-height: 4rem;
+  --transition: 200ms ease;
+  --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+// Dark theme overrides. Applied via [data-theme="dark"] on <html>,
+// toggled by useTheme() and persisted to localStorage - see
+// composables/useTheme.js and plugins/theme.client.js for how the
+// attribute gets set before paint to avoid a flash of the wrong theme.
+[data-theme='dark'] {
+  --color-primary: #3b82f6;
+  --color-primary-rgb: 59, 130, 246;
+  --color-primary-dark: #60a5fa;
+  --color-primary-light: #1e3a5f;
+  --color-secondary: #f1f5f9;
+  --color-accent: #fbbf24;
+  --color-success: #34d399;
+  --color-danger: #f87171;
+  --color-bg: #0f172a;
+  --color-bg-alt: #1e293b;
+  --color-surface: #1e293b;
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+  --color-border: #334155;
+
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+}

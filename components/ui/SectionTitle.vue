@@ -1,12 +1,8 @@
-<script setup lang="ts">
-interface Props {
-  title: string
-  subtitle?: string
-  centered?: boolean
-}
-
-withDefaults(defineProps<Props>(), {
-  centered: false,
+<script setup>
+defineProps({
+  title: { type: String, required: true },
+  subtitle: { type: String, default: '' },
+  centered: { type: Boolean, default: false },
 })
 </script>
 
@@ -17,7 +13,7 @@ withDefaults(defineProps<Props>(), {
   </header>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .section-header--centered {
   text-align: center;
 }

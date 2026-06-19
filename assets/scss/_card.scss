@@ -1,0 +1,33 @@
+@use 'mixins' as m;
+
+.card {
+  @include m.card-surface;
+  overflow: hidden;
+  transition: box-shadow var(--transition), transform var(--transition);
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 0.375rem;
+  background: var(--color-danger);
+  color: #fff;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+
+  &--success {
+    background: var(--color-success);
+  }
+
+  &--muted {
+    background: var(--color-text-muted);
+  }
+}

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 definePageMeta({
   layout: 'auth',
   middleware: ['guest'],
@@ -6,24 +6,29 @@ definePageMeta({
 
 const { t } = useI18n()
 const localePath = useLocalePath()
-const authStore = useAuthStore()
 
-useAppSeo({
-  title: t('auth.forgotTitle'),
-  noindex: true,
-})
+useAppSeo({ title: t('auth.forgotTitle') })
 
 const email = ref('')
-const isSent = ref(false)
 const isLoading = ref(false)
+const error = ref('')
 
 async function handleSubmit() {
+  error.value = ''
   isLoading.value = true
-  await new Promise(resolve => setTimeout(resolve, 800))
-  authStore.requestPasswordReset(email.value)
-  isSent.value = true
-  isLoading.value = false
-  await navigateTo(localePath('/auth/otp'))
+  try {
+    const result = await $fetch('/api/auth/forgot-password', {
+      method: 'POST',
+      body: { email: email.value },
+    })
+    await navigateTo(localePath(`/auth/otp?demoOtp=${result.demoOtp}`))
+  }
+  catch {
+    error.value = t('common.error')
+  }
+  finally {
+    isLoading.value = false
+  }
 }
 </script>
 
@@ -31,12 +36,16 @@ async function handleSubmit() {
   <div class="auth-card card">
     <h1 class="auth-card__title">{{ t('auth.forgotTitle') }}</h1>
 
-    <form v-if="!isSent" @submit.prevent="handleSubmit">
+    <form @submit.prevent="handleSubmit">
       <div class="form-group">
         <label class="form-label" for="email">{{ t('auth.email') }}</label>
-        <input id="email" v-model="email" type="email" class="form-input" required autocomplete="email" />
+        <input id="email" v-model="email" type="email" class="form-input" required autocomplete="email">
       </div>
-      <button type="submit" class="btn btn--primary" style="width:100%" :disabled="isLoading">
+
+      <p v-if="error" class="auth-card__error" role="alert">{{ error }}</p>
+
+      <button type="submit" class="btn btn--primary btn--block" :disabled="isLoading">
+        <span v-if="isLoading" class="spinner" aria-hidden="true" />
         {{ isLoading ? t('common.loading') : t('auth.forgotButton') }}
       </button>
     </form>
@@ -47,7 +56,7 @@ async function handleSubmit() {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .auth-card {
   padding: 2rem;
 }
@@ -56,6 +65,12 @@ async function handleSubmit() {
   margin: 0 0 1.5rem;
   text-align: center;
   font-size: 1.5rem;
+}
+
+.auth-card__error {
+  color: var(--color-danger);
+  font-size: 0.875rem;
+  margin: 0 0 1rem;
 }
 
 .auth-card__links {

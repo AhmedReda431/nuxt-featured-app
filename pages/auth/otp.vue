@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 definePageMeta({
   layout: 'auth',
   middleware: ['guest'],
@@ -6,15 +6,15 @@ definePageMeta({
 
 const { t } = useI18n()
 const localePath = useLocalePath()
-const authStore = useAuthStore()
+const route = useRoute()
 
-useAppSeo({
-  title: t('auth.otpTitle'),
-  noindex: true,
-})
+useAppSeo({ title: t('auth.otpTitle') })
+
+const demoOtp = computed(() => route.query.demoOtp || '')
 
 const otp = ref('')
 const newPassword = ref('')
+const confirmPassword = ref('')
 const error = ref('')
 const isVerified = ref(false)
 const isLoading = ref(false)
@@ -23,11 +23,14 @@ async function handleVerify() {
   error.value = ''
   isLoading.value = true
   try {
-    authStore.verifyOtp(otp.value)
+    await $fetch('/api/auth/verify-otp', {
+      method: 'POST',
+      body: { code: otp.value },
+    })
     isVerified.value = true
   }
   catch (e) {
-    error.value = (e as Error).message
+    error.value = e?.data?.statusMessage || t('common.error')
   }
   finally {
     isLoading.value = false
@@ -35,18 +38,32 @@ async function handleVerify() {
 }
 
 async function handleReset() {
-  authStore.resetPassword(newPassword.value)
-  await navigateTo(localePath('/auth/login'))
+  error.value = ''
+  if (newPassword.value !== confirmPassword.value) {
+    error.value = t('auth.passwordsDontMatch')
+    return
+  }
+  isLoading.value = true
+  try {
+    await $fetch('/api/auth/reset-password', {
+      method: 'POST',
+      body: { password: newPassword.value },
+    })
+    await navigateTo(localePath('/auth/login'))
+  }
+  catch (e) {
+    error.value = e?.data?.statusMessage || t('common.error')
+  }
+  finally {
+    isLoading.value = false
+  }
 }
 </script>
 
 <template>
   <div class="auth-card card">
     <h1 class="auth-card__title">{{ t('auth.otpTitle') }}</h1>
-    <p v-if="authStore.pendingEmail" class="auth-card__email">
-      {{ authStore.pendingEmail }}
-    </p>
-    <p class="auth-card__hint">Demo OTP: <strong>123456</strong></p>
+    <p v-if="demoOtp" class="auth-card__hint">{{ t('auth.demoOtpHint') }} <strong>{{ demoOtp }}</strong></p>
 
     <form v-if="!isVerified" @submit.prevent="handleVerify">
       <div class="form-group">
@@ -61,23 +78,32 @@ async function handleReset() {
           maxlength="6"
           pattern="[0-9]{6}"
           autocomplete="one-time-code"
-        />
+        >
       </div>
 
       <p v-if="error" class="auth-card__error" role="alert">{{ error }}</p>
 
-      <button type="submit" class="btn btn--primary" style="width:100%" :disabled="isLoading">
+      <button type="submit" class="btn btn--primary btn--block" :disabled="isLoading">
+        <span v-if="isLoading" class="spinner" aria-hidden="true" />
         {{ isLoading ? t('common.loading') : t('auth.otpButton') }}
       </button>
     </form>
 
     <form v-else @submit.prevent="handleReset">
       <div class="form-group">
-        <label class="form-label" for="newPassword">{{ t('auth.password') }}</label>
-        <input id="newPassword" v-model="newPassword" type="password" class="form-input" required minlength="6" autocomplete="new-password" />
+        <label class="form-label" for="newPassword">{{ t('auth.newPassword') }}</label>
+        <input id="newPassword" v-model="newPassword" type="password" class="form-input" required minlength="6" autocomplete="new-password">
       </div>
-      <button type="submit" class="btn btn--primary" style="width:100%">
-        {{ t('auth.forgotButton') }}
+      <div class="form-group">
+        <label class="form-label" for="confirmPassword">{{ t('auth.confirmPassword') }}</label>
+        <input id="confirmPassword" v-model="confirmPassword" type="password" class="form-input" required minlength="6" autocomplete="new-password">
+      </div>
+
+      <p v-if="error" class="auth-card__error" role="alert">{{ error }}</p>
+
+      <button type="submit" class="btn btn--primary btn--block" :disabled="isLoading">
+        <span v-if="isLoading" class="spinner" aria-hidden="true" />
+        {{ t('auth.resetButton') }}
       </button>
     </form>
 
@@ -87,7 +113,7 @@ async function handleReset() {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .auth-card {
   padding: 2rem;
 }
@@ -96,13 +122,6 @@ async function handleReset() {
   margin: 0 0 0.5rem;
   text-align: center;
   font-size: 1.5rem;
-}
-
-.auth-card__email {
-  text-align: center;
-  color: var(--color-text-muted);
-  font-size: 0.875rem;
-  margin: 0 0 0.5rem;
 }
 
 .auth-card__hint {
