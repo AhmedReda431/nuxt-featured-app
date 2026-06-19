@@ -112,6 +112,7 @@ useSwipe(trackRef, {
   margin-top: 0.75rem;
   overflow-x: auto;
   padding-bottom: 0.25rem;
+  flex-wrap: wrap;
 }
 
 .product-slider__thumb {
