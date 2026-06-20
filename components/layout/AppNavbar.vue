@@ -217,7 +217,7 @@ onUnmounted(() => {
                     <span class="sidemenu__user-name">{{ authStore.fullName }}</span>
                     <span class="sidemenu__user-email">{{ authStore.user?.email }}</span>
                   </div>
-                  <NuxtLink :to="localePath('/profile')" class="btn btn--ghost btn--block" @click="closeMenu">
+                  <NuxtLink :to="localePath('/profile')" class="btn btn--ghost btn--block mb-2" @click="closeMenu">
                     {{ t('nav.profile') }}
                   </NuxtLink>
                   <button type="button" class="btn btn--outline btn--block" @click="handleLogout">
