@@ -65,4 +65,4 @@ i18n/locales/            → en.json, ar.json
 
 See `.env.example`. `NUXT_AUTH_SECRET` **must** be changed before production — it encrypts the session cookie.
 
-### Developed By Ahmed Reda | +201200994894 live demo : https://nuxt-featured-app.vercel.app/
+### Developed By Ahmed Reda | +201200994894 | live demo : https://nuxt-featured-app.vercel.app/
