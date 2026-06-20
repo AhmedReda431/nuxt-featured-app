@@ -6,8 +6,8 @@
  * a redundant network round-trip competing with hydration.
  */
 export default defineNuxtPlugin(async () => {
-  if (import.meta.server) {
-    const authStore = useAuthStore()
-    await authStore.fetchCurrentUser()
-  }
-})
+  // if (import.meta.server) {
+  const authStore = useAuthStore();
+  await authStore.fetchCurrentUser();
+  // }
+});
