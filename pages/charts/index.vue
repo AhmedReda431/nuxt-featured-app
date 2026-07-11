@@ -228,7 +228,7 @@ const CandlestickChartAsync = defineAsyncComponent(
   () => import("@/components/charts/CandlestickChart.vue"),
 );
 const FunnelChartAsync = defineAsyncComponent(
-  () => import("@/components/charts/FunnelChart.vue"),
+  () => import("@/components/charts/Funnelchart.vue"),
 );
 const TreemapChartAsync = defineAsyncComponent(
   () => import("@/components/charts/TreemapChart.vue"),
