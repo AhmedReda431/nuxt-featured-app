@@ -1,0 +1,95 @@
+<template>
+  <div class="chart-card">
+    <h3 v-if="title" class="chart-title">{{ title }}</h3>
+    <v-chart
+      class="chart-canvas"
+      :option="option"
+      :style="{ height }"
+      autoresize
+    />
+  </div>
+</template>
+
+<script setup>
+import { computed } from "vue";
+import { use } from "echarts/core";
+import { CanvasRenderer } from "echarts/renderers";
+import { ScatterChart as EScatterChart } from "echarts/charts";
+import {
+  GridComponent,
+  TooltipComponent,
+  LegendComponent,
+} from "echarts/components";
+import VChart from "vue-echarts";
+import { useChartTheme } from "@/composables/useChartTheme";
+
+use([
+  CanvasRenderer,
+  EScatterChart,
+  GridComponent,
+  TooltipComponent,
+  LegendComponent,
+]);
+
+const props = defineProps({
+  title: { type: String, default: "" },
+  // [{ name: 'حملات 2026', data: [[x, y], [x, y, symbolSize]], color: '#...' }]
+  series: { type: Array, required: true },
+  height: { type: String, default: "360px" },
+  xName: { type: String, default: "" },
+  yName: { type: String, default: "" },
+});
+
+const {
+  palette,
+  baseTextStyle,
+  baseTooltip,
+  baseGrid,
+  splitLineColor,
+  subTextColor,
+} = useChartTheme();
+
+const option = computed(() => ({
+  textStyle: baseTextStyle,
+  color: props.series.map((s, i) => s.color || palette[i % palette.length]),
+  tooltip: { trigger: "item", ...baseTooltip },
+  legend: {
+    show: props.series.length > 1,
+    textStyle: { color: subTextColor },
+    top: 0,
+  },
+  grid: baseGrid,
+  xAxis: {
+    type: "value",
+    name: props.xName,
+    splitLine: { lineStyle: { color: splitLineColor } },
+    axisLabel: { color: subTextColor },
+  },
+  yAxis: {
+    type: "value",
+    name: props.yName,
+    splitLine: { lineStyle: { color: splitLineColor } },
+    axisLabel: { color: subTextColor },
+  },
+  series: props.series.map((s) => ({
+    name: s.name,
+    type: "scatter",
+    data: s.data,
+    symbolSize: (val) => (val[2] ? val[2] : 12),
+  })),
+}));
+</script>
+
+<style scoped>
+.chart-card {
+  width: 100%;
+}
+.chart-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+.chart-canvas {
+  width: 100%;
+}
+</style>

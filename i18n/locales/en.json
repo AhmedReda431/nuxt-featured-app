@@ -238,9 +238,18 @@
     "account": "Account",
     "payment": "Payment",
     "questions": [
-      { "q": "What is this starter kit?", "a": "It's a universal Nuxt 3 template designed to kickstart any web project with pre-built modules for e-commerce, real estate, and more." },
-      { "q": "Is it SEO friendly?", "a": "Yes, it uses Nuxt's built-in SEO features, semantic HTML, and automatic meta tag generation." },
-      { "q": "Does it support RTL?", "a": "Absolutely! It has full Arabic support with RTL layout switching." }
+      {
+        "q": "What is this starter kit?",
+        "a": "It's a universal Nuxt 3 template designed to kickstart any web project with pre-built modules for e-commerce, real estate, and more."
+      },
+      {
+        "q": "Is it SEO friendly?",
+        "a": "Yes, it uses Nuxt's built-in SEO features, semantic HTML, and automatic meta tag generation."
+      },
+      {
+        "q": "Does it support RTL?",
+        "a": "Absolutely! It has full Arabic support with RTL layout switching."
+      }
     ]
   },
   "realEstate": {
@@ -296,5 +305,180 @@
     "save": "Save",
     "cancel": "Cancel",
     "confirm": "Confirm"
+  },
+  "charts": {
+    "page": {
+      "title": "Charts Showcase",
+      "subtitle": "A gallery of all chart types. Each component is independent and only receives data."
+    },
+    "loading": {
+      "skeleton": "Loading...",
+      "fallback": "Loading charts..."
+    },
+    "error": {
+      "message": "An error occurred while loading chart data.",
+      "retry": "Retry"
+    },
+    "titles": {
+      "bar": "Quarterly Sales by Product",
+      "line": "Monthly User Growth",
+      "area": "Website Visits (Stacked)",
+      "pie": "Visit Distribution by Source",
+      "donut": "Order Status",
+      "radar": "Skill Assessment",
+      "scatter": "Relationship between Ads and Sales",
+      "heatmap": "Activity by Day and Hour",
+      "gauge": "Monthly Target Completion Rate",
+      "candlestick": "Stock Price (Demo)",
+      "funnel": "Customer Conversion Stages",
+      "treemap": "Sales Volume by Category"
+    },
+    "data": {
+      "bar": {
+        "categories": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "Q4"
+        ],
+        "series": [
+          "Product A",
+          "Product B"
+        ]
+      },
+      "line": {
+        "categories": [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June"
+        ],
+        "series": [
+          "New Users",
+          "Active Users"
+        ]
+      },
+      "area": {
+        "categories": [
+          "Saturday",
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "series": [
+          "Mobile",
+          "Desktop"
+        ]
+      },
+      "pie": {
+        "labels": [
+          "Direct Search",
+          "Ads",
+          "Social Media",
+          "Email",
+          "Other"
+        ]
+      },
+      "donut": {
+        "centerLabel": "1,240",
+        "labels": [
+          "Delivered",
+          "Shipping",
+          "Cancelled",
+          "Returned"
+        ]
+      },
+      "radar": {
+        "indicators": [
+          "Vue.js",
+          "Nuxt",
+          "TypeScript",
+          "CSS",
+          "Testing",
+          "React"
+        ],
+        "series": [
+          "Current Level",
+          "Target"
+        ]
+      },
+      "scatter": {
+        "xName": "Ad Budget",
+        "yName": "Sales",
+        "seriesName": "2026 Campaigns"
+      },
+      "heatmap": {
+        "xCategories": [
+          "12AM",
+          "4AM",
+          "8AM",
+          "12PM",
+          "4PM",
+          "8PM"
+        ],
+        "yCategories": [
+          "Sat",
+          "Sun",
+          "Mon",
+          "Tue",
+          "Wed"
+        ]
+      },
+      "gauge": {
+        "value": 72
+      },
+      "candlestick": {
+        "dates": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ]
+      },
+      "funnel": {
+        "labels": [
+          "Visits",
+          "Sign Up",
+          "Add to Cart",
+          "Start Checkout",
+          "Completed Purchase"
+        ]
+      },
+      "treemap": {
+        "categories": [
+          {
+            "name": "Electronics",
+            "children": [
+              "Mobiles",
+              "Laptops",
+              "Accessories"
+            ]
+          },
+          {
+            "name": "Fashion",
+            "children": [
+              "Men",
+              "Women"
+            ]
+          },
+          {
+            "name": "Home",
+            "children": [
+              "Kitchen",
+              "Decor"
+            ]
+          }
+        ]
+      }
+    }
   }
 }
