@@ -13,6 +13,7 @@ A production-style **Nuxt 3** starter (plain JavaScript, no TypeScript) built to
 - **Dark / light mode** — toggle in the navbar and on the profile page, persisted to localStorage, with a blocking inline script that applies the right theme before first paint (no flash of the wrong theme on reload).
 - **Blog** — real articles from DummyJSON `/posts`, with comments, search, pagination.
 - **Real Estate** — listings + detail pages with filters (type, status, city, bedrooms, price, sort), served from a built-in Nitro server API (`/server/api/real-estate`) — swap for a real provider later without touching any page code.
+- **Charts** — 12 reusable, data-agnostic chart components powered by **ECharts** + `vue-echarts`: Area, Bar, Candlestick, Donut, Funnel, Gauge, Heatmap, Line, Pie, Radar, Scatter, and Treemap. Each accepts a unified `options` prop (or individual `series` / `categories` bindings) and auto-resizes with its container. Great for admin dashboards, analytics panels, or product-stat pages.
 - **i18n** — English & Arabic, full RTL layout switching.
 - **SEO** — per-page meta, Open Graph, Twitter cards, canonical URLs, JSON-LD structured data, dynamic `robots.txt`, and an auto-generated, locale-aware `sitemap.xml` (via `@nuxtjs/sitemap`).
 - **Performance** — lazy-loaded images (`@nuxt/image`), route-level code splitting, a single shared `IntersectionObserver` for scroll-reveal sections, deferred non-critical timers, SWR caching on dynamic routes, prerendering for static pages.
@@ -24,6 +25,7 @@ Verified with a real Lighthouse run (mobile profile, 4× CPU throttle) at the ti
 
 - Nuxt 3 (Vue 3, Vite, Nitro) — **plain JavaScript**, no TypeScript
 - **SCSS** (`sass-embedded`) — organized into partials under `assets/scss/` (`_variables`, `_mixins`, `_tokens`, `_base`, `_layout`, `_buttons`, `_forms`, `_card`, `_accessibility`, `_animations`), pulled together by `main.scss`. Design tokens (colors, spacing, radii) stay as CSS custom properties in `_tokens.scss` rather than SCSS variables, specifically so they can be swapped at runtime — that's what powers dark mode and RTL overrides without a rebuild.
+- **ECharts** + `vue-echarts` — charting library with Vue wrapper; tree-shaken imports so only the used chart types and renderers are bundled.
 - Pinia + `pinia-plugin-persistedstate`
 - `@nuxtjs/i18n`, `@nuxt/image`, `@nuxtjs/sitemap`, `@vueuse/core`
 - `crypto-js` for cookie encryption
