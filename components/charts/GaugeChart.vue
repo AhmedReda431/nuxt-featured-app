@@ -17,7 +17,7 @@ import { CanvasRenderer } from "echarts/renderers";
 import { GaugeChart as EGaugeChart } from "echarts/charts";
 import { TooltipComponent } from "echarts/components";
 import VChart from "vue-echarts";
-import { useChartTheme } from "@/composables/useChartTheme";
+import { useChartsTheme } from "@/composables/useChartsTheme"
 
 use([CanvasRenderer, EGaugeChart, TooltipComponent]);
 
@@ -32,7 +32,7 @@ const props = defineProps({
 });
 
 const { baseTextStyle, baseTooltip, subTextColor, textColor, splitLineColor } =
-  useChartTheme();
+  useChartsTheme();
 
 const option = computed(() => ({
   textStyle: baseTextStyle,

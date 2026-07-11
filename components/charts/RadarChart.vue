@@ -21,7 +21,7 @@ import {
   LegendComponent,
 } from "echarts/components";
 import VChart from "vue-echarts";
-import { useChartTheme } from "@/composables/useChartTheme";
+import { useChartsTheme } from "@/composables/useChartsTheme"
 
 use([
   CanvasRenderer,
@@ -41,7 +41,7 @@ const props = defineProps({
 });
 
 const { palette, baseTextStyle, baseTooltip, splitLineColor, subTextColor } =
-  useChartTheme();
+  useChartsTheme();
 
 const option = computed(() => ({
   textStyle: baseTextStyle,

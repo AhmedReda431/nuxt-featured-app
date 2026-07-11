@@ -17,7 +17,7 @@ import { CanvasRenderer } from "echarts/renderers";
 import { PieChart as EPieChart } from "echarts/charts";
 import { TooltipComponent, LegendComponent } from "echarts/components";
 import VChart from "vue-echarts";
-import { useChartTheme } from "@/composables/useChartTheme";
+import { useChartsTheme } from "@/composables/useChartsTheme"
 
 use([CanvasRenderer, EPieChart, TooltipComponent, LegendComponent]);
 
@@ -28,7 +28,7 @@ const props = defineProps({
   height: { type: String, default: "360px" },
 });
 
-const { palette, baseTextStyle, baseTooltip, subTextColor } = useChartTheme();
+const { palette, baseTextStyle, baseTooltip, subTextColor } = useChartsTheme();
 
 const option = computed(() => ({
   textStyle: baseTextStyle,

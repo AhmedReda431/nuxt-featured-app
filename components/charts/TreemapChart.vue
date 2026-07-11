@@ -17,7 +17,7 @@ import { CanvasRenderer } from "echarts/renderers";
 import { TreemapChart as ETreemapChart } from "echarts/charts";
 import { TooltipComponent } from "echarts/components";
 import VChart from "vue-echarts";
-import { useChartTheme } from "@/composables/useChartTheme";
+import { useChartsTheme } from "@/composables/useChartsTheme"
 
 use([CanvasRenderer, ETreemapChart, TooltipComponent]);
 
@@ -28,7 +28,7 @@ const props = defineProps({
   height: { type: String, default: "420px" },
 });
 
-const { palette, baseTextStyle, baseTooltip } = useChartTheme();
+const { palette, baseTextStyle, baseTooltip } = useChartsTheme();
 
 const option = computed(() => ({
   textStyle: baseTextStyle,

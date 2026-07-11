@@ -17,7 +17,7 @@ import { CanvasRenderer } from "echarts/renderers";
 import { FunnelChart as EFunnelChart } from "echarts/charts";
 import { TooltipComponent, LegendComponent } from "echarts/components";
 import VChart from "vue-echarts";
-import { useChartTheme } from "@/composables/useChartTheme";
+import { useChartsTheme } from "@/composables/useChartsTheme"
 
 use([CanvasRenderer, EFunnelChart, TooltipComponent, LegendComponent]);
 
@@ -28,7 +28,7 @@ const props = defineProps({
   height: { type: String, default: "380px" },
 });
 
-const { palette, baseTextStyle, baseTooltip, subTextColor } = useChartTheme();
+const { palette, baseTextStyle, baseTooltip, subTextColor } = useChartsTheme();
 
 const option = computed(() => ({
   textStyle: baseTextStyle,

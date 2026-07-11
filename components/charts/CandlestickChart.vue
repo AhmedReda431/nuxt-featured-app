@@ -21,7 +21,7 @@ import {
   DataZoomComponent,
 } from "echarts/components";
 import VChart from "vue-echarts";
-import { useChartTheme } from "@/composables/useChartTheme";
+import { useChartsTheme } from "@/composables/useChartsTheme"
 
 use([
   CanvasRenderer,
@@ -42,7 +42,7 @@ const props = defineProps({
 });
 
 const { baseTextStyle, baseTooltip, baseGrid, splitLineColor, subTextColor } =
-  useChartTheme();
+  useChartsTheme();
 
 const option = computed(() => ({
   textStyle: baseTextStyle,

@@ -17,7 +17,7 @@ import { CanvasRenderer } from "echarts/renderers";
 import { PieChart as EPieChart } from "echarts/charts";
 import { TooltipComponent, LegendComponent } from "echarts/components";
 import VChart from "vue-echarts";
-import { useChartTheme } from "@/composables/useChartTheme";
+import { useChartsTheme } from "@/composables/useChartsTheme"
 
 use([CanvasRenderer, EPieChart, TooltipComponent, LegendComponent]);
 
@@ -30,7 +30,7 @@ const props = defineProps({
 });
 
 const { palette, baseTextStyle, baseTooltip, subTextColor, textColor } =
-  useChartTheme();
+  useChartsTheme();
 
 const total = computed(() => props.data.reduce((sum, d) => sum + d.value, 0));
 

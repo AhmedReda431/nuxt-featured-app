@@ -1,9 +1,9 @@
 /**
- * useChartTheme
+ * useChartsTheme
  * ثيم مشترك لكل الـ chart components عشان الألوان تبقى متسقة في كل المشروع.
  * لو عندك Vuetify theme، تقدر تستبدل القيم دي بـ useTheme().current.value.colors
  */
-export function useChartTheme() {
+export function useChartsTheme() {
   const palette = [
     "#6366F1", // indigo
     "#22C55E", // green
