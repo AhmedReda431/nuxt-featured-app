@@ -169,7 +169,7 @@
           </Suspense>
         </div>
 
-        <div class="grid-item">
+        <div class="grid-item grid-item--lg-wide">
           <Suspense>
             <TreemapChartAsync
               v-if="treemapChart"
@@ -454,7 +454,6 @@ async function fetchTreemapChartData() {
     data: [
       {
         name: "إلكترونيات",
-        value: 0,
         children: [
           { name: "موبايلات", value: 420 },
           { name: "لابتوبات", value: 310 },
@@ -591,9 +590,12 @@ onMounted(() => {
 .grid-item--wide {
   grid-column: span 2;
 }
+.grid-item--lg-wide {
+  grid-column: span 3;
+}
 
 @media (max-width: 900px) {
-  .grid-item--wide {
+  .grid-item--wide , .grid-item--lg-wide {
     grid-column: span 1;
   }
 }
