@@ -14,7 +14,8 @@
     "logout": "Logout",
     "profile": "Profile",
     "menu": "Menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "charts": "Charts"
   },
   "home": {
     "heroTitle": "Build Anything with One Starter Kit",
@@ -348,12 +349,12 @@
       },
       "line": {
         "categories": [
-          "January",
-          "February",
-          "March",
-          "April",
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
           "May",
-          "June"
+          "Jun"
         ],
         "series": [
           "New Users",
@@ -362,13 +363,13 @@
       },
       "area": {
         "categories": [
-          "Saturday",
-          "Sunday",
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday"
+          "Sat",
+          "Sun",
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thu",
+          "Fri"
         ],
         "series": [
           "Mobile",
