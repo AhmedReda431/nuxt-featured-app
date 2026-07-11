@@ -45,6 +45,7 @@ Visit `http://localhost:3000`.
 ## 📁 Where things live
 
 ```
+components/charts/*      → reusable ECharts wrappers (Area, Bar, Candlestick, Donut, Funnel, Gauge, Heatmap, Line, Pie, Radar, Scatter, Treemap)
 server/api/auth/*        → login, register, OTP flow, profile update, session refresh/logout (all read/write the encrypted cookie)
 server/api/real-estate/* → property listings + detail (Nitro-served demo data)
 server/routes/robots.txt.js → dynamic robots.txt, always points at the real configured site URL
