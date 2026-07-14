@@ -16,6 +16,7 @@ const features = [
   { icon: '🔐', title: 'Secure Auth', desc: 'Encrypted session cookie, idle auto-logout' },
   { icon: '🌍', title: 'i18n', desc: 'English & Arabic with full RTL support' },
   { icon: '⚡', title: 'Performance', desc: 'Lazy loading, code splitting, real SEO' },
+  { icon: '📊', title: 'Charts', desc: 'Includes 12 reusable ECharts components' },
 ]
 
 const stats = [
